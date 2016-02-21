@@ -16,14 +16,14 @@ class GameBridge():
         websocket.enableTrace(True)
         self.ws = websocket.WebSocket()
         self.ws.connect("ws://127.0.0.1:8080/")
-        self.ws.send("Hello, World")
+        #self.ws.send("Hello, World")
 
         rospy.spin()
 
     def handleJointAngles(self, msg):
         rospy.loginfo("Game Bridge - Received a joint angle target")
         # Make a JSON
-        json = "{'l':"+ str(msg.joint_angles[1]) + ",'r':" + str(msg.joint_angles[5]) + "}"
+        json = '{"l":'+ str(msg.joint_angles[1]) + ',"r":' + str(msg.joint_angles[5]) + '}'
         self.ws.send(json)
         try:
             return
